@@ -7,9 +7,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: 0 20px 0 0;
+        }
+        input {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .text {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+    </style>
 </head>
 <body>
-    <div id="app"></div>
+    <div class="wrapper" id="app">
+        <button @click="show = !show" :aria-expanded="show ? 'true' : 'false'"> Открыть</button>
+        <form v-if="show">
+        <label for="Firstname"></label>
+        <br>
+        <input type="text" id="firstname" placeholder="Имя" v-model="formData.firstname">
+        <input type="email" id="email" placeholder="Имя" v-model="formData.email">
+        <input type="url" id="url" placeholder="Имя" v-model="formData.url">
+        <input type="image" id="image" placeholder="Имя" v-model="formData.image">
+        <input type="date" id="born" placeholder="Имя" v-model="formData.date">
+        <button type="submit">Submit</button>
+        </form>
+<div class="text">
+        <h3>Your name is {{formData.firstname}} {{formData.lastname}}</h3>
+        <h3>Email: {{formData.email}}</h3>
+        <h3>Website: {{formData.url}}</h3>
+        <h3>Image {{formData.image}}</h3>
+        <h3>Born: {{formData.date}}</h3>
+</div>
+    </div>
 </body>
 <script src="js/app.js"></script>
 </html>
