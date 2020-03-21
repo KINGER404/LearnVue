@@ -14,11 +14,18 @@
         <div class="app_goods">
             <div v-for="someGood in someGoods" :key="someGood.id">
                 {{ someGood.name }}
+                <br>
+                {{ someGood.category }}
+                <br>
                 {{ someGood.price }}
+                <br>
+                {{ someGood.stock }}
+                <br>
+                {{ someGood.description }}
                 <button @click="addGood(someGood)" class="add_goodsbutton">Добавить товар</button>
             </div>
         </div>
-
+        <navbar></navbar>
 
         <div class="cart">
             <div class="cart__title"></div>
@@ -36,14 +43,17 @@
 </template>
 
 <script>
+    import Navbar from "./Navbar"
+
     export default {
         name: "App",
+        components: {Navbar},
         data() {
             return {
                 someGoods: [
-                    {id: 1, name: 'First', price: 103.2},
-                    {id: 2, name: 'Two', price: 1013.1},
-                    {id: 3, name: 'Three', price: 5035.2}
+                    {id: 1, name: 'First', price: 103.2, stock: 32, category: 'Jeans', description: 'У этих модулей нет никакой косметики, используются только для позиционирования компонентов c- и для построения макета приложения.\n'},
+                    {id: 2, name: 'Two', price: 1013.1, stock: 7, category: 'T-shirts', description: 'Эти классы имеют одну функцию, часто используют !important для повышения их специфичности. (В основном используются для позиционирования или видимости.)'},
+                    {id: 3, name: 'Three', price: 5035.2, stock: 2, category: 'Coats', description: 'Показывают различные состояния, которые могут быть у компонентов c-. Более детальное описание можно найти ниже в 6 проблеме.'}
                 ],
                 addedGoods: []
             }
@@ -65,6 +75,9 @@
             }
         },
         methods: {
+            addedGoodsStock (){
+
+            },
             findAddedGoodById(addedGoodId) {
                 return this.addedGoods.find(addedGood => addedGood.id === addedGoodId);
             },
@@ -78,7 +91,11 @@
                         id: good.id,
                         qty: 1,
                         name: good.name,
-                        price: good.price
+                        price: good.price,
+                        stock: good.stock,
+                        category:good.category,
+                        description: good.description
+
                     })
                 }
             },
