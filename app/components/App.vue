@@ -75,9 +75,6 @@
             }
         },
         methods: {
-            addedGoodsStock (){
-
-            },
             findAddedGoodById(addedGoodId) {
                 return this.addedGoods.find(addedGood => addedGood.id === addedGoodId);
             },
