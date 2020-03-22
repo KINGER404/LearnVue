@@ -2,15 +2,19 @@
     <div class="header">
         <div class="header__logo">Maгазин</div>
         <div class="shopbasket header__shopbasket">
-            <div class="shopbasket">Корзина:</div>
-            <div class="shopbasket__counter">1</div>
+            <router-link to="/cart" class="shopbasket">Корзина:</router-link>
+            <div class="shopbasket__counter">{{ itemsCount }} / {{ totalPrice }} руб</div>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from "vuex"
+
     export default {
-        name: "Navbar"
+        computed: {
+            ...mapGetters('cart', ['itemsCount', 'totalPrice'])
+        }
     }
 </script>
 
